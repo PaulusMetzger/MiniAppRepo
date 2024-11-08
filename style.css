@@ -1,0 +1,39 @@
+/* Стили для кнопок-картинок */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 кнопки в ряд */
+    grid-gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.card {
+    width: 150px; /* Ширина кнопки-картинки */
+    height: 150px; /* Высота кнопки-картинки */
+    background-color: #e7e7e7; /* Цвет фона кнопки-картинки */
+    border: 1px solid #333; /* Граница кнопки-картинки */
+    cursor: pointer; /* Стиль курсора */
+}
+
+.restartButton {
+    width: 150px; /* Ширина*/    
+    background-color: #4CAF50; /* Зеленый цвет фона кнопки */
+    color: white; /* Белый цвет текста на кнопке */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Закругляем углы кнопки */
+    cursor: pointer; /* Стиль курсора при наведении на кнопку */
+}
+
+.restartButton:hover {
+    background-color: #45a049; /* Цвет фона при наведении на кнопку */
+}
