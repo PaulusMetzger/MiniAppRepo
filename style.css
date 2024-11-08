@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f0f0f0;
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
 }
 
 h1 {
@@ -25,13 +27,13 @@ h1 {
 }
 
 .restartButton {
-    width: 150px; /* Ширина*/    
-    background-color: #4CAF50; /* Зеленый цвет фона кнопки */
-    color: white; /* Белый цвет текста на кнопке */
+    width: 150px; /* Ширина*/ 
     padding: 10px 20px; /* Отступы внутри кнопки */
     border: none; /* Убираем границу кнопки */
     border-radius: 5px; /* Закругляем углы кнопки */
     cursor: pointer; /* Стиль курсора при наведении на кнопку */
+    color: var(--tg-theme-button-text-color);
+    background: var(--tg-theme-button-color);
 }
 
 .restartButton:hover {
