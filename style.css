@@ -39,3 +39,14 @@ h1 {
 .restartButton:hover {
     background-color: #45a049; /* Цвет фона при наведении на кнопку */
 }
+
+.button{
+	background: var(--tg-theme-button-color);
+	color: var(--tg-theme-button-text-color);
+	border: none;
+	font-size: 18px;
+}
+
+.button:not(:last-child){
+	margin-bottom: 20px
+}
