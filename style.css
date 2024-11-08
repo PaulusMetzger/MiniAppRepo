@@ -34,6 +34,7 @@ h1 {
     cursor: pointer; /* Стиль курсора при наведении на кнопку */
     color: var(--tg-theme-button-text-color);
     background: var(--tg-theme-button-color);
+    margin-top: 25px; /* Отступ сверху */
 }
 
 .restartButton:hover {
