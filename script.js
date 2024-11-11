@@ -1,5 +1,6 @@
 let flippedCards = [];
 let matchedCards = [];
+let cardsTotalAmount = 12;
 
 function flipCard(card) {
     if (flippedCards.length < 2 && !flippedCards.includes(card) && !matchedCards.includes(card)) {
@@ -13,16 +14,22 @@ function flipCard(card) {
 }
 
 function checkMatch() {
-    if (flippedCards[0].dataset.category === flippedCards[1].dataset.category) {
-        matchedCards.push(...flippedCards); // Если картинки совпали, добавляем их в массив совпавших карт
-        flippedCards = []; // Очищаем массив открытых карт
+    if (matchedCards.length === cardsTotalAmount) { // Проверка, что все карты совпали
+        showMainButn(); 
+    } else if (flippedCards[0].dataset.category === flippedCards[1].dataset.category) {
+        matchedCards.push(...flippedCards);
+        flippedCards = [];
     } else {
         flippedCards.forEach(flippedCard => {
-            flippedCard.src = flippedCard.dataset.image; // Переворачиваем обратно несовпавшие картинки
+            flippedCard.src = flippedCard.dataset.image;
         });
-        flippedCards = []; // Очищаем массив открытых карт
+        flippedCards = [];
     }
 }
+
+function showMainButn() {
+    tg.MainButton.show()
+ }
 
 function restartGame() {
     location.reload(); // Перезагрузка страницы для начала игры заново
