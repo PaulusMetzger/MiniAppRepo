@@ -86,14 +86,5 @@
     function restartGame() {
         location.reload(); // Перезагрузка страницы для начала игры заново
     }
-
-    // Получаем все элементы с классом "card"
-    const cards = document.querySelectorAll('.card');   
-
-    // Случайно перемешиваем элементы "card" в родительском контейнере
-    const gameGrid = document.querySelector('.game-grid');
-    for (let i = gameGrid.children.length; i >= 0; i--) {
-        gameGrid.appendChild(gameGrid.children[Math.random() * i | 0]);
-    }  
 </script>    
 </html>
