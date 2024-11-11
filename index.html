@@ -29,9 +29,8 @@
 
 <script>
     let tg = window.Telegram.WebApp; //получаем объект webapp телеграма    
-    tg.expand(); //расширяем на все окно
-    
-    tg.showAlert(`Добро пожаловать, @${tg.WebAppUser.username}.`);
+    tg.expand(); //расширяем на все окно    
+    tg.showAlert('Добро пожаловать!');
     
     //tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
     tg.MainButton.setText("Закрыть и вернуться"); //изменяем текст кнопки иначе
