@@ -23,25 +23,77 @@
         <img class="card" src="static/back-image1.png" data-category="6" data-image="static/back-image1.png" data-front-image="static/image11.png" onclick="flipCard(this)">
         <img class="card" src="static/back-image1.png" data-category="6" data-image="static/back-image1.png" data-front-image="static/image12.png" onclick="flipCard(this)">
     </div>
-    <button class="restartButton" onclick="restartGame()">Начать заново</button>
-    <script src="script.js"></script>
+    <button class="restartButton" onclick="restartGame()">Начать заново</button>    
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 
 <script>
-   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
-   tg.expand(); //расширяем на все окно
-   //tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
-   tg.MainButton.setText("Закрыть и вернуться"); //изменяем текст кнопки иначе
-   tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
-   tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-   //tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
-   //tg.MainButton.show()  
+    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+    tg.expand(); //расширяем на все окно
+    //tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
+    tg.MainButton.setText("Закрыть и вернуться"); //изменяем текст кнопки иначе
+    tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
+    tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
+    //tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+    //tg.MainButton.show()
+   
+    Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        tg.sendData("some string that we need to send"); 
+        //при клике на основную кнопку отправляем данные в строковом виде
+    }); 
 
-   Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData("some string that we need to send"); 
-      //при клике на основную кнопку отправляем данные в строковом виде
-   }); 
-</script>
+    let flippedCards = [];
+    let matchedCards = [];
+        // Получаем все элементы с классом "card"
+    const cards = document.querySelectorAll('.card');
+    // Случайно перемешиваем элементы "card" в родительском контейнере
+    const gameGrid = document.querySelector('.game-grid');
+    for (let i = gameGrid.children.length; i >= 0; i--) {
+        gameGrid.appendChild(gameGrid.children[Math.random() * i | 0]);
+    }
     
+    function flipCard(card) {
+        if (flippedCards.length < 2 && !flippedCards.includes(card) && !matchedCards.includes(card)) {
+            card.src = card.dataset.frontImage; // Переворачиваем картинку на переднюю сторону
+            flippedCards.push(card);
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000); // Проверяем совпадение картинок после задержки
+            }
+        }
+    }    
+
+    function checkMatch() {
+        if (flippedCards[0].dataset.category === flippedCards[1].dataset.category) {
+            matchedCards.push(...flippedCards); // Если картинки совпали, добавляем их в массив совпавших карт
+            flippedCards = []; // Очищаем массив открытых карт
+        } else {
+            flippedCards.forEach(flippedCard => {
+                flippedCard.src = flippedCard.dataset.image; // Переворачиваем обратно несовпавшие картинки
+            });
+            flippedCards = []; // Очищаем массив открытых карт
+        }
+        if (matchedCards.length === cards.length) {
+            tg.MainButton.show() 
+            alert('Поздравляем! Вы выиграли!');
+        }
+    }
+    
+    function restartGame() {
+        location.reload(); // Перезагрузка страницы для начала игры заново
+    }
+    
+
+    function restartGame() {
+        location.reload(); // Перезагрузка страницы для начала игры заново
+    }
+
+    // Получаем все элементы с классом "card"
+    const cards = document.querySelectorAll('.card');   
+
+    // Случайно перемешиваем элементы "card" в родительском контейнере
+    const gameGrid = document.querySelector('.game-grid');
+    for (let i = gameGrid.children.length; i >= 0; i--) {
+        gameGrid.appendChild(gameGrid.children[Math.random() * i | 0]);
+    }  
+</script>    
 </html>
