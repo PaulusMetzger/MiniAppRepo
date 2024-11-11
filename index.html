@@ -28,8 +28,11 @@
 </body>
 
 <script>
-    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма    
     tg.expand(); //расширяем на все окно
+    
+    tg.showAlert(`Добро пожаловать, @${WebApp.WebAppUser.username}.`);
+    
     //tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
     tg.MainButton.setText("Закрыть и вернуться"); //изменяем текст кнопки иначе
     tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
@@ -74,7 +77,8 @@
         }
         if (matchedCards.length === cards.length) {
             tg.MainButton.show() 
-            alert('Чтобы вернуться в бота нажмите пожалуйста на кнопку \"Закрыть и вернуться\"');
+            tg.showAlert('Превосходно!');
+            //alert('Чтобы вернуться в бота нажмите пожалуйста на кнопку \"Закрыть и вернуться\"');
         }
     }
     
